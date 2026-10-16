@@ -9,6 +9,11 @@ export const getHints: Exercise['getHints'] = () => [
   'What should happen to the UI when `api` throws?',
   'What if the user clicks again while a request is in flight?',
 ];
+export const getFix: Exercise['getFix'] = () => [
+  'Snapshot before updating, and derive count from `liked` (`base + (liked ? 1 : 0)`) so the two cannot drift.',
+  'Ignore clicks while a request is in flight (or serialise/dedupe), `try/catch` and roll back to the snapshot, show an error.',
+  'With TanStack Query: `onMutate` (snapshot + optimistic write), `onError` (rollback), `onSettled` (invalidate). React 19: `useOptimistic` within an action.',
+];
 
 async function api(liked: boolean) {
   await new Promise(r => setTimeout(r, 800));

@@ -9,6 +9,11 @@ export const getHints: Exercise['getHints'] = () => [
   'How many unrelated concerns share one provider value?',
   'Why is `any` a red flag here?',
 ];
+export const getFix: Exercise['getFix'] = () => [
+  'Split contexts by concern (`SearchCtx`, `ThemeCtx`) and memoise each `value` with `useMemo`.',
+  'Type them (`createContext<Value | null>(null)`) plus a `useSearch()` hook that throws outside a provider.',
+  'Better still: keep `search` state *inside* `SearchBox`\'s parent (state colocation) or use a selector store such as Zustand.',
+];
 
 const AppCtx = createContext<any>(null);
 

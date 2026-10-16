@@ -10,6 +10,11 @@ export const getHints: Exercise['getHints'] = () => [
   'What does `0 && <X/>` evaluate to?',
   'What is `cart` during the first render?',
 ];
+export const getFix: Exercise['getFix'] = () => [
+  'Early return `if (!cart) return <p>Loading…</p>;`.',
+  'Use `cart.items.length > 0 && …` (or a ternary) so a stray `0` is not rendered.',
+  'Use optional chaining: `cart.coupon?.code ?? \'none\'`. Mention a discriminated-union state (`loading | ready`) to remove the optionality altogether.',
+];
 
 type Cart = { items: { id: string; name: string; price: number }[]; coupon?: { code: string } };
 

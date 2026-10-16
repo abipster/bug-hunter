@@ -7,6 +7,14 @@ export const getDifficulty: Exercise['getDifficulty'] = () => 2;
 export const getHints: Exercise['getHints'] = () => [
   'Two bugs: what does the interval callback close over, and who clears the interval on stop/unmount?',
 ];
+export const getFix: Exercise['getFix'] = () => [
+  `useEffect(() => {
+  if (!running) return;
+  const id = setInterval(() => setSeconds(s => s + 1), 1000);
+  return () => clearInterval(id);
+}, [running]);`,
+  'Under StrictMode the missing cleanup makes the bug worse (two intervals, counting by 2).',
+];
 
 export default function StaleInterval() {
   const [seconds, setSeconds] = useState(0);

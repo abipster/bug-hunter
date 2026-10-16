@@ -8,6 +8,11 @@ export const getHints: Exercise['getHints'] = () => [
   'List every prop and ask whether its identity is stable across renders.',
   'Check the `useMemo` dependency list against what the callback reads.',
 ];
+export const getFix: Exercise['getFix'] = () => [
+  '`all` is recreated every render, so `useMemo([all])` recomputes every time and never caches. Move `all` to module scope and fix the deps to `[minId]`. Note the latent bug: once `all` is stable, `[all]` alone would leave `filtered` stale when `minId` changes, because `minId` is read but not listed.',
+  '`onSelect` needs `useCallback`, and `style` must be hoisted to a module constant (`const LIST_STYLE = {...}`) or memoised. Then `memo` works.',
+  'Verify with the Profiler, and mention that React Compiler removes most of this manual work.',
+];
 
 type Item = { id: number; label: string };
 

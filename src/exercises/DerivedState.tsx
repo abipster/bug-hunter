@@ -9,6 +9,10 @@ export const getHints: Exercise['getHints'] = () => [
   'Is `fullLabel` state?',
   "How do you reset a component's state when an id changes?",
 ];
+export const getFix: Exercise['getFix'] = () => [
+  'Compute `const fullLabel = `${name} <${user.email}>`` in render (no state, no effect, and no missing `user.email` dependency).',
+  'Reset the form by remounting: `<UserForm key={selected.id} user={selected} />`.',
+];
 
 type User = { id: number; name: string; email: string };
 const USERS: User[] = [

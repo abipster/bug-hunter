@@ -8,4 +8,5 @@ import type { ExerciseFix } from './ExerciseFix'
 export interface Exercise extends ExerciseFix {
   getDifficulty: () => number
   getHints: () => string[]
+  getFix: () => string[]
 }

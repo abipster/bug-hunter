@@ -10,6 +10,11 @@ export const getHints: Exercise['getHints'] = () => [
   'Does clicking "Next" refetch? Check the dependency array.',
   'What happens on a non-2xx response, or when the component unmounts mid-request?',
 ];
+export const getFix: Exercise['getFix'] = () => [
+  'Effects cannot be `async`; define the async function inside and call it.',
+  'Add `id` to deps (otherwise "Next" never refetches), abort in cleanup, check `res.ok`, handle errors.',
+  'Clear stale data when `id` changes (or render `<Post key={id} id={id} />`). Or replace the whole thing with `useQuery`.',
+];
 
 function Post({ id }: { id: number }) {
   const [post, setPost] = useState<{ title: string }>();

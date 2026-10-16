@@ -9,6 +9,26 @@ export const getHints: Exercise['getHints'] = () => [
   'What happens on `fetch` rejection or non-2xx?',
   'Should an empty query fetch? Should every keystroke fetch?',
 ];
+export const getFix: Exercise['getFix'] = () => [
+  `useEffect(() => {
+  if (!query.trim()) { setResults([]); return; }
+  const ctrl = new AbortController();
+  const t = setTimeout(async () => {
+    setLoading(true);
+    try {
+      const r = await fetch(\`https://api.example.com/search?q=\${encodeURIComponent(query)}\`, { signal: ctrl.signal });
+      if (!r.ok) throw new Error(r.statusText);
+      setResults((await r.json()).items);
+    } catch (e) {
+      if ((e as Error).name !== 'AbortError') setError(e as Error);
+    } finally {
+      if (!ctrl.signal.aborted) setLoading(false);
+    }
+  }, 300);                     // debounce
+  return () => { clearTimeout(t); ctrl.abort(); };
+}, [query]);`,
+  'In production use TanStack Query (`useQuery({ queryKey: [\'search\', debounced], queryFn, enabled: !!debounced })`) and `encodeURIComponent`.',
+];
 
 export default function OutOfOrderSearch() {
   const [query, setQuery] = useState('');

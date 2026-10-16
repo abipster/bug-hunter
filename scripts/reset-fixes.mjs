@@ -30,11 +30,11 @@ for (const name of requested.length ? requested : available) {
   const fixPath = join(fixesDir, `${name}.tsx`)
   // Keep the fix's own description if it already has one.
   const existing = existsSync(fixPath) ? readFileSync(fixPath, 'utf8').match(DESCRIPTION_LINE)?.[0] : undefined
-  // Fix files are typed as ExerciseFix and have no difficulty or hints.
+  // Fix files are typed as ExerciseFix and have no difficulty, hints or fix notes.
   const reset = source
     .replace(/import type \{ Exercise \} from '([^']*)\/Exercise'/, "import type { ExerciseFix } from '$1/ExerciseFix'")
     .replace(/^export const getDifficulty[^\n]*\n/m, '')
-    .replace(/^export const getHints[^\n]*\[\];?\n|^export const getHints[^\n]*\n[\s\S]*?^\];?\n/m, '')
+    .replace(/^export const get(?:Hints|Fix)\b[^\n]*\[\];?\n|^export const get(?:Hints|Fix)\b[^\n]*\n[\s\S]*?^\];?\n/gm, '')
     .replace(/\bExercise\[/g, 'ExerciseFix[')
     .replace(DESCRIPTION_LINE, () => existing ?? DEFAULT_DESCRIPTION)
   writeFileSync(fixPath, reset)

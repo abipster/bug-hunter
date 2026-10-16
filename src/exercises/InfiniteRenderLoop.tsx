@@ -8,6 +8,11 @@ export const getHints: Exercise['getHints'] = () => [
   'Open the Network tab. What is the identity of `options` on each render?',
   'Does the fetch even depend on `filter`?',
 ];
+export const getFix: Exercise['getFix'] = () => [
+  '`options` is a new object every render, so the effect re-runs, `setUsers` re-renders, repeat.',
+  'Remove the object: the fetch depends only on the constant `5`, so use `[]` (move `LIMIT` to module scope).',
+  'Filtering is derived state and belongs in render, not in an effect. Add cleanup/abort and error handling while you are there.',
+];
 
 type User = { id: number; name: string };
 

@@ -13,6 +13,7 @@ export default function ExercisePage({ name, exercise }: ExercisePageProps) {
   const ExerciseComponent = exercise.default
   const FixComponent = fix?.default
   const hints = exercise.getHints?.() ?? []
+  const fixes = exercise?.getFix?.() ?? []
 
   return (
     <div className="exercise-page">
@@ -34,6 +35,18 @@ export default function ExercisePage({ name, exercise }: ExercisePageProps) {
               <ul>
                 {hints.map((hint, index) => (
                   <li key={index}>{hint}</li>
+                ))}
+              </ul>
+            </details>
+          )}
+          {fixes.length > 0 && (
+            <details className="exercise-panel-footer">
+              <summary>Fix ({fixes.length})</summary>
+              <ul>
+                {fixes.map((note, index) => (
+                  <li key={index}>
+                    {note.includes('\n') ? <pre><code>{note}</code></pre> : note}
+                  </li>
                 ))}
               </ul>
             </details>

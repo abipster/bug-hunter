@@ -8,6 +8,10 @@ export const getHints: Exercise['getHints'] = () => [
   '`defaultValue` is only read on mount.',
   'Which component instance does React think is "row 0" after the delete?',
 ];
+export const getFix: Exercise['getFix'] = () => [
+  'Give rows a stable id (`{ id, name }`) and use `key={item.id}`. Then React removes the right instance and keeps each input\'s DOM state attached to its row.',
+  'Also decide whether the input should be controlled (state in the array) if the list needs to be saved.',
+];
 
 export default function LostInputs() {
   const [names, setNames] = useState(['Ana', 'Bruno', 'Carla']);

@@ -8,6 +8,10 @@ export const getDifficulty: Exercise['getDifficulty'] = () => 2;
 export const getHints: Exercise['getHints'] = () => [
   'What is actually passed to `onClick`: a function, or the result of calling one?',
 ];
+export const getFix: Exercise['getFix'] = () => [
+  '`onClick={() => setSelected(item)}` and `onClick={() => remove(item)}`.',
+  'Passing the *result* of a call runs it during render, and `setSelected` during render triggers a re-render loop. Also prefer `setItems(prev => prev.filter(...))`.',
+];
 
 export default function HandlerOnRender() {
   const [items, setItems] = useState(['a', 'b', 'c']);

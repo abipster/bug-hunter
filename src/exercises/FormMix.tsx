@@ -10,6 +10,14 @@ export const getHints: Exercise['getHints'] = () => [
   'Is every handler actually being called? What happens to the other fields when one changes?',
   'What stops a second submit while the first is in flight?',
 ];
+export const getFix: Exercise['getFix'] = () => [
+  '`e.preventDefault` is not called (missing `()`).',
+  '`setForm({ email })` drops the other fields (use `prev => ({...prev, email})`).',
+  '`value={undefined}` starts uncontrolled (initialise with `\'\'`).',
+  '`age` stores a string (convert with `e.target.valueAsNumber`) and TypeScript should complain. The checkbox must use `checked` and `e.target.checked`.',
+  'No error handling or `res.ok` check, and no disabled/pending state so double submit posts twice (`useTransition`, `useActionState` or an `isSubmitting` flag).',
+  'Senior answer: use React Hook Form + Zod resolver, and `useActionState` in React 19.',
+];
 
 type Form = { email?: string; age?: number; newsletter?: boolean };
 

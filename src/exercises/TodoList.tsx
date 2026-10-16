@@ -7,6 +7,15 @@ export const getDifficulty: Exercise['getDifficulty'] = () => 1;
 export const getHints: Exercise['getHints'] = () => [
   '`Object.is(prev, next)`. Which array methods mutate? Is `todos.length + 1` a safe id after a delete?'
 ];
+export const getFix: Exercise['getFix'] = () => [
+  'State must never be mutated: build new arrays/objects so React sees a new reference. `push` and `todos.find(...).done = ...` mutate in place, and `sort` mutates too, which scrambles the original order.',
+  `const add = () =>
+  setTodos(prev => [...prev, { id: crypto.randomUUID() as unknown as number, text: 'New', done: false }]);
+const toggle = (id: number) =>
+  setTodos(prev => prev.map(t => (t.id === id ? { ...t, done: !t.done } : t)));
+const sorted = [...todos].sort((a, b) => a.text.localeCompare(b.text)); // or todos.toSorted(...)`,
+  'Better: make `id` a `string` and use `crypto.randomUUID()`; derive `sorted` with `useMemo` only if the list is large.',
+];
 
 type Todo = { id: number; text: string; done: boolean };
 

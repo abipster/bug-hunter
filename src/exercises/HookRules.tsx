@@ -8,6 +8,10 @@ export const getHints: Exercise['getHints'] = () => [
   'Do hooks run in the same order on every render?',
   'What does the effect do when the component goes away?',
 ];
+export const getFix: Exercise['getFix'] = () => [
+  'Hooks must run before any early return: move the `if (!user) return null` below the hooks, or split into `Tracker` (guard) and `TrackerInner` (hooks).',
+  'Return a cleanup removing the listener. Consider throttling with `requestAnimationFrame`, and use `{ passive: true }`.',
+];
 
 function Tracker({ user }: { user: { name: string } | null }) {
   if (!user) return null;

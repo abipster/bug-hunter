@@ -7,8 +7,12 @@ export const getDifficulty: Exercise['getDifficulty'] = () => 1
 export const getHints: Exercise['getHints'] = () => [
   'Each render is a snapshot. Which count do the three calls see? Which count does the timeout capture?'
 ]
+export const getFix: Exercise['getFix'] = () => [
+  'Use the updater form: `setCount(c => c + 1)` three times. The alert showing the value from click time is correct snapshot behaviour;',
+  'If you want the latest value, read it from a ref (`const latest = useRef(count); latest.current = count;`).'
+]
 
-export default function Uncounter() {
+export default function Counter() {
   const [count, setCount] = useState(0);
 
   const addThree = () => {
