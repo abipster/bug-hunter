@@ -1,6 +1,6 @@
 # Bug Hunter
 
-A React + TypeScript training app. Each exercise is a small component with a bug in it. You see the broken component next to your own copy and fix the copy until it behaves correctly.
+A React + TypeScript training app. Each exercise is a small component with some issues in it. You see the broken component next to your own copy and fix the copy until it behaves correctly.
 
 ## Getting started
 

@@ -59,7 +59,42 @@ function App() {
           </p>
           <p>Difficulty levels range from 1 (warm-up) to 3 (senior trap).</p>
         </div>
-       
+
+        <section id="how-to-use" className="how-to-use">
+          <h2>How to use</h2>
+          <ol>
+            <li>Click an exercise in the table below to open it.</li>
+            <li>
+              The page shows two panels side by side: <strong>Exercise (broken)</strong>, the
+              original component (don't edit it), and <strong>Your fix</strong>, your workspace,
+              which renders <code>src/fixes/&lt;ExerciseName&gt;.tsx</code>.
+            </li>
+            <li>
+              Reproduce the bug, say out loud what you observe, form a hypothesis, then edit the
+              fix file and watch the right panel update.
+            </li>
+            <li>Stuck? Open the collapsible <strong>Hints</strong> under the broken exercise.</li>
+            <li>
+              Some exercises start with <code>// @ts-nocheck</code> because the broken code has
+              deliberate TypeScript errors. Delete that line in your fix file to see them, they
+              are often a clue.
+            </li>
+          </ol>
+          <h4>Reset your fixes</h4>
+          <p>
+            <code>npm run reset-fixes</code> resets all fix files, or{' '}
+            <code>npm run reset-fixes -- Uncounter</code> resets one. This overwrites your
+            changes with a fresh copy of the exercise.
+          </p>
+          <h4>Add an exercise</h4>
+          <p>
+            Create <code>src/exercises/&lt;Name&gt;.tsx</code> with a default component plus{' '}
+            <code>getId</code>, <code>getDescription</code>, <code>getDifficulty</code> and{' '}
+            <code>getHints</code>, then run <code>npm run reset-fixes -- &lt;Name&gt;</code> to
+            create the matching fix file. It shows up in the table automatically.
+          </p>
+        </section>
+
        <section id="exercises">
         <table className="exercise-table">
           <thead>
